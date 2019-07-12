@@ -18,6 +18,7 @@ class CreateAdminTable extends Migration
             $table->bigInteger('nomor_pegawai')->unique();
             $table->string('nama_admin');
             $table->string('password');
+            $table->string('jenis_kelamin');
             $table->string('email')->unique();
             $table->rememberToken();
             $table->timestamps();

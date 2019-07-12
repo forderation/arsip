@@ -16,11 +16,7 @@ class Pegawai extends Authenticatable
     protected $fillable = [
         'nama_pegawai',
         'email',
-        'nomor_pegawai'
+        'nomor_pegawai',
+        'jenis_kelamin'
     ];
-
-    public function setPasswordAttribute($val)
-    {
-        return $this->attributes['password'] = bcrypt($val);
-    }
 }

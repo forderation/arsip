@@ -17,7 +17,8 @@ class CreatePegawaiTable extends Migration
             $table->increments('id');
             $table->bigInteger('nomor_pegawai')->unique();
             $table->string('nama_pegawai');
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->string('jenis_kelamin');
             $table->string('email')->unique();
             $table->rememberToken();
             $table->timestamps();

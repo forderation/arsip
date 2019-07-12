@@ -20,6 +20,7 @@ class CreatePinjamanSuratTable extends Migration
             $table->dateTime('tanggal_pinjam')->nullable();
             $table->dateTime('tanggal_kembali')->nullable();
             $table->dateTime('batas_akhir_kembali')->nullable();
+            $table->enum('status_dipinjam', ['masih dipinjam', 'ada'])->default('ada');
             $table->timestamps();
             $table->foreign('id_surat_ukur')->references('id')->on('surat_ukur')
                 ->onDelete('cascade')->onUpdate('cascade');

@@ -17,7 +17,15 @@ class TableSeeder extends Seeder
             'nomor_pegawai' => 197201242000031004,
             'nama_admin'  => "Ruwanda Destory",
             'password'  =>  bcrypt("123admin"),
-            'email' => "ruwanda@gmail.com"
+            'email' => "ruwanda@gmail.com",
+            'jenis_kelamin' => 'laki-laki'
+        ]);
+        Admin::create([
+            'nomor_pegawai' => 197201242000031003,
+            'nama_admin'  => "Kharisma Muzaki",
+            'password'  =>  bcrypt("123arip"),
+            'email' => "kharisma.muzaki@gmail.com",
+            'jenis_kelamin' => 'laki-laki'
         ]);
     }
 }

@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\AdminResetPasswordNotification;
 
 class Admin extends Authenticatable
 {
     //
+    use Notifiable;
+
+    protected $guard = 'admin';
     protected $table = 'admin';
     protected $hidden = [
         'password', 'remember_token',
@@ -17,11 +19,11 @@ class Admin extends Authenticatable
     protected $fillable = [
         'nama_admin',
         'email',
-        'nomor_pegawai'
+        'nomor_pegawai',
+        'jenis_kelamin'
     ];
 
-    public function setPasswordAttribute($val)
-    {
-        return $this->attributes['password'] = bcrypt($val);
+    public function get_nama(){
+        return $this->nama_admin;
     }
 }
