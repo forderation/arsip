@@ -21,7 +21,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('lte/dist/css/skins/_all-skins.min.css')}}">
-
+    <link rel="icon" href="{{asset('logo.png')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -109,11 +109,28 @@
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-
                     <li
                         class="{{request()->is('adm1n/kelola-pegawai/*') || request()->is('adm1n/kelola-pegawai') ? 'active open' : ''}}">
                         <a href="{{route('admin.kelola-pegawai')}}">
                             <i class="fa fa-users"></i> <span>Kelola Pegawai</span>
+                        </a>
+                    </li>
+                    <li
+                        class="{{request()->is('adm1n/surat-ukur/*') || request()->is('adm1n/surat-ukur') ? 'active open' : ''}}">
+                        <a href="{{route('admin.surat-ukur')}}">
+                            <i class="fa fa-fw fa-file-text-o"></i> <span>Kelola Surat Ukur</span>
+                        </a>
+                    </li>
+                    <li
+                        class="{{request()->is('adm1n/wilayah/*') || request()->is('adm1n/wilayah') ? 'active open' : ''}}">
+                        <a href="{{route('admin.wilayah')}}">
+                            <i class="fa fa-fw fa-pie-chart"></i> <span>Kelola Wilayah</span>
+                        </a>
+                    </li>
+                    <li
+                        class="{{request()->is('adm1n/pinjaman/*') || request()->is('adm1n/pinjaman') ? 'active open' : ''}}">
+                        <a href="{{route('admin.pinjaman')}}">
+                            <i class="fa fa-fw fa-server"></i> <span>Kelola Pinjaman</span>
                         </a>
                     </li>
                 </ul>
@@ -130,6 +147,7 @@
                     <small>Version 1.0</small>
                 </h1>
                 <ol class="breadcrumb">
+                    <i class="fa fa-dashboard"> </i>
                     <?php $segments = ''; ?>
                     @foreach(Request::segments() as $segment)
 
@@ -143,7 +161,7 @@
                         @if(is_numeric($segment))
                         @yield('id_name')
                         @else
-                        <a href="{{ $segments }}">{{ucwords(str_replace("_", " ", $segment))}}</a>
+                        <a href=" {{ $segments }}">{{ucwords(str_replace("_", " ", $segment))}}</a>
                         @endif
                     </li>
                     @endif

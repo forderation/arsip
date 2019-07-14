@@ -28,7 +28,7 @@
                 {{ $errors->first('email') }}
             </div>
             @endif
-            <div class="box box-default box-solid">
+            <div class="box box-primary box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">Menu Kelola Pegawai</h3>
                     <div class="box-tools pull-right">
@@ -78,8 +78,8 @@
                                 <td>{{$pegawai->jenis_kelamin}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-block btn-primary"><i
-                                                class="fa fa-fw fa-list-ul"></i>Detail</button>
+                                        <a href="/adm1n/kelola-pegawai/{{$pegawai->id}}" class="btn btn-block btn-primary"><i
+                                                class="fa fa-fw fa-list-ul"></i>Detail</a>
                                     </div>
                                     <div class="btn-group">
                                         <button
@@ -175,7 +175,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Pegawai: </label>
-                                <input type="text" min="0" class="form-control" name="nama_pegawai" id="nama_pegawai"
+                                <input type="text" class="form-control" name="nama_pegawai" id="nama_pegawai"
                                     value="" disabled>
                             </div>
                         </div>

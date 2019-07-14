@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         if ($guard == 'pegawai') {
             if (Auth::guard($guard)->check()) {
-                return redirect('/pegawai');
+                return redirect('/dashboard');
             }
         } else if ($guard == 'admin') {
             if (Auth::guard($guard)->check()) {

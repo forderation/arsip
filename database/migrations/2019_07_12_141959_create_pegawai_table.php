@@ -15,11 +15,12 @@ class CreatePegawaiTable extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('nomor_pegawai')->unique();
+            $table->bigInteger('nomor_pegawai')->unique()->nullable();
             $table->string('nama_pegawai');
             $table->string('password')->nullable();
             $table->string('jenis_kelamin');
-            $table->string('email')->unique();
+            $table->enum('validitas', ['valid','tidak valid'])->default('tidak valid');
+            $table->string('email')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

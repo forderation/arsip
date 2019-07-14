@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Admin;
+use App\Informasi;
 
 class TableSeeder extends Seeder
 {
@@ -26,6 +27,9 @@ class TableSeeder extends Seeder
             'password'  =>  bcrypt("123arip"),
             'email' => "kharisma.muzaki@gmail.com",
             'jenis_kelamin' => 'laki-laki'
+        ]);
+        Informasi::create([
+            'batas_akhir_kembali' => 7,
         ]);
     }
 }

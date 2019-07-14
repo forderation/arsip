@@ -8,13 +8,14 @@ class Kecamatan extends Model
 {
     //
     protected $table = "kecamatan";
+    protected $primaryKey = "id";
     protected $fillable = [
         "nama_kecamatan"
     ];
 
     public function kelurahan()
     {
-        return $this->hasMany('App\Kelurahan');
+        return $this->hasMany('App\Kelurahan','id_kecamatan');
     }
 
     public function surat_ukur(){

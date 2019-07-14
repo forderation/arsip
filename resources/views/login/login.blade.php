@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('lte/dist/css/AdminLTE.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('lte/plugins/iCheck/square/blue.css')}}">
-
+    <link rel="icon" href="{{asset('logo.png')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

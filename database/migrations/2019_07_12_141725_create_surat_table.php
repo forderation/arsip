@@ -21,7 +21,8 @@ class CreateSuratTable extends Migration
             $table->unsignedInteger('id_kelurahan');
             $table->unsignedInteger('id_kecamatan');
             $table->string('nomor_rak');
-            $table->string('path_gambar');
+            $table->string('path_gambar')->nullable();
+            $table->enum('ketersediaan', ['tersedia', 'tidak tersedia'])->default('tersedia');
             $table->timestamps();
             $table->foreign('id_kelurahan')->references('id')->on('kelurahan')
                 ->onDelete('cascade')->onUpdate('cascade');
