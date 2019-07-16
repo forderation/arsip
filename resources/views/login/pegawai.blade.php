@@ -1,5 +1,6 @@
 @extends('login.login')
 @section('form')
+<p class="login-box-msg">Silahkan isi data masuk terlebih dahulu</p>
 <form method="POST" action="{{route('pegawai.login.submit')}}">
     @csrf
     <div class="form-group">
@@ -27,7 +28,7 @@
     <br>
     <div class="row">
         <div class="col-xs-6">
-            <a hre="#" class="btn btn-warning btn-block btn-flat">Belum punya akun ?</a>
+            <a href="{{route('pegawai.daftar')}}" class="btn btn-warning btn-block btn-flat">Belum punya akun ?</a>
         </div>
         <div class="col-xs-6">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>

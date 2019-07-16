@@ -57,7 +57,7 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
+                        <li class="dropdown user user-menu {{request()->is('adm1n/profil') ? 'active' : ''}}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{asset('logo.png')}}" class="user-image" alt="User Image">
                                 <span class="hidden-xs">{{\Auth::user()->get_nama()}}</span>
@@ -73,11 +73,10 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{{route('admin.show-profil')}}" class="btn btn-primary btn-flat"><i class="fa fa-fw fa-user"></i> Profil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{{route('admin.logout')}}" class="btn btn-default btn-flat">Sign
-                                            out</a>
+                                        <a href="{{route('admin.logout')}}" class="btn btn-warning btn-flat"><i class="fa fa-fw fa-eject"></i> Keluar</a>
                                     </div>
                                 </li>
                             </ul>

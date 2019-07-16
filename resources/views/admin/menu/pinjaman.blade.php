@@ -24,6 +24,9 @@
                     <div class="btn-group">
                         <button type="button" data-toggle="modal" data-target="#modal-atur-standar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-cog"></i> Atur standar pinjaman</button>
                     </div>
+                    <div class="btn-group" style="margin-left:20px;">
+                        <h4>Batas maksimal durasi pinjaman saat ini <span class="label label-primary">{{$batas_durasi}}</span> hari</h4>
+                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -42,12 +45,10 @@
                                 <th>No</th>
                                 <th>Nomor Surat Ukur</th>
                                 <th>Peminjam</th>
-                                <th>Pinjam</th>
-                                <th>Kembali</th>
+                                <th>Tgl Pinjam</th>
+                                <th>Tgl Kembali</th>
                                 <th>Batas akhir</th>
-                                <th>Status</th>
-                                <th>Atur</th>
-                                <th>Pinjaman</th>
+                                <th>Status Pinjaman</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,40 +56,57 @@
                             @foreach ($pinjamans as $pinjaman)
                             <tr>
                                 <td>{{$no}}</td>
-                                <td>{{$pinjaman->surat_ukur->nomor_surat_ukur}}</td>
+                                <td><a href="surat-ukur/{{$pinjaman->surat_ukur->id}}">{{$pinjaman->surat_ukur->nomor_surat_ukur}}</a></td>
                                 <td><a href="kelola-pegawai/{{$pinjaman->peminjam->id}}">{{$pinjaman->peminjam->nama_pegawai}}</a></td>
                                 <td>{{$pinjaman->tanggal_pinjam}}</td>
-                                <td>{{$pinjaman->tanggal_kembali}}</td>
-                                <td>{{$pinjaman->batas_akhir_kembali}}</td>
-                                <td>{{$pinjaman->status_dipinjam}}</td>
                                 <td>
-                                    @if($pinjaman->status_dipinjam=="menunggu persetujuan")
-                                    <form role="form" method="post" action="{{route('admin.update-status-pinjaman')}}">
+                                    @if($pinjaman->status_dipinjam=="menunggu persetujuan" || $pinjaman->status_dipinjam=="masih dipinjam")
+                                        <span class="label bg-yellow" style="font-size: 12px;">{{$pinjaman->status_dipinjam}}</span>
+                                    @elseif($pinjaman->status_dipinjam=="pengajuan dibatalkan")
+                                        <span class="label bg-red" style="font-size: 12px;">{{$pinjaman->status_dipinjam}}</span>
+                                    @else
+                                        <span class="label bg-green" style="font-size: 12px;">{{$pinjaman->tanggal_kembali}}</span>                                        
+                                    @endif
+                                </td>
+                                <td>{{$pinjaman->batas_akhir_kembali}}</td>
+                                <td>
+                                    @if($pinjaman->status_dipinjam=="masih dipinjam")
+                                    <form role="form" method="post" action="{{route('admin.update-pinjaman-selesai')}}">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$pinjaman->id}}"/>
                                         <input type="hidden" name="id_surat" value="{{$pinjaman->surat_ukur->id}}"/>
-                                        <div class="input-group margin">
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-cog"></i> Atur</button>
-                                            </div>
-                                            <!-- /btn-group -->
-                                            <select name="pinjaman" class="form-control" required>
-                                                <option value="masih dipinjam">Setujui pinjaman</option>
-                                                <option value="pengajuan dibatalkan">Tolak pinjaman</option>
-                                            </select>
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-check"></i> atur selesai</button>
                                         </div>
                                     </form>
                                     @else
-                                        {{$pinjaman->status_dipinjam}}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($pinjaman->status_dipinjam=="masih dipinjam")
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Atur Selesai</button>
-                                    </div>
-                                    @else
-                                        {{$pinjaman->status_dipinjam}}
+                                        @if($pinjaman->tanggal_kembali!=null)
+                                            @if($pinjaman->tanggal_kembali<$pinjaman->batas_akhir_kembali)
+                                                <span class="label bg-green" style="font-size: 12px;">{{$pinjaman->status_dipinjam}}</span>
+                                            @else
+                                                <span class="label bg-red" style="font-size: 12px;">pengembalian lewat batas</span>
+                                            @endif
+                                        @else
+                                            @if($pinjaman->status_dipinjam=="menunggu persetujuan")
+                                                <form role="form" method="post" action="{{route('admin.update-status-pinjaman')}}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$pinjaman->id}}"/>
+                                                    <input type="hidden" name="id_surat" value="{{$pinjaman->surat_ukur->id}}"/>
+                                                    <div class="input-group margin" style="margin:0px">
+                                                        <div class="input-group-btn">
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-cog"></i> atur</button>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                        <select name="pinjaman" class="form-control" required>
+                                                            <option value="masih dipinjam">setujui pinjaman</option>
+                                                            <option value="pengajuan dibatalkan">tolak pinjaman</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            @else
+                                                <span class="label bg-red" style="font-size: 12px;">{{$pinjaman->status_dipinjam}}</span>
+                                            @endif
+                                        @endif
                                     @endif
                                 </td>
                                 <?php $no++ ?>

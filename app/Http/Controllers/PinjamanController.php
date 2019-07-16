@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pinjaman;
 use App\Informasi;
 use App\SuratUkur;
+use Carbon\Carbon;
 class PinjamanController extends Controller
 {
     //
@@ -33,6 +34,7 @@ class PinjamanController extends Controller
         $id = $request->id;
         $status = $request->pinjaman;
         $id_surat = $request->id_surat;
+        $surat = SuratUkur::where('id',$id_surat)->first();
         if($status=="masih dipinjam"){
             $data_pinjam = Pinjaman::where('id_surat_ukur',$id_surat)->where('status_dipinjam','menunggu persetujuan')->get();
             foreach($data_pinjam as $data){
@@ -42,12 +44,24 @@ class PinjamanController extends Controller
             $data_pinjam = Pinjaman::where('id',$id)->first();
             $data_pinjam->status_dipinjam = $status;
             $data_pinjam->save();
-            $surat = SuratUkur::where('id',$id_surat)->first();
             $surat->ketersediaan = "tidak tersedia";
             $surat->save();
         }
-        $surat = SuratUkur::where('id',$id_surat)->first();
         return back()->with('sukses', 'Sukses merubah status surat nomor:'.
         $surat->nomor_surat_ukur.' menjadi: '.$status);
+    }
+
+    public function pinjaman_selesai(Request $request){
+        $id = $request->id;
+        $id_surat = $request->id_surat;
+        $surat = SuratUkur::where('id',$id_surat)->first();
+        $surat->ketersediaan = "tersedia";
+        $surat->save();
+        $data_pinjam = Pinjaman::where('id',$id)->first();
+        $data_pinjam->status_dipinjam = "pinjaman selesai";
+        $data_pinjam->tanggal_kembali = Carbon::now();
+        $data_pinjam->save();
+        return back()->with('sukses', 'Sukses merubah status surat nomor:'.
+        $surat->nomor_surat_ukur.' menjadi: '.$data_pinjam->status_dipinjam);
     }
 }

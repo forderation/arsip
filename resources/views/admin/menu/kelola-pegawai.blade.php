@@ -64,6 +64,7 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Jenis Kelamin</th>
+                                <th>Validitas</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -76,6 +77,13 @@
                                 <td>{{$pegawai->nama_pegawai}}</td>
                                 <td>{{$pegawai->email}}</td>
                                 <td>{{$pegawai->jenis_kelamin}}</td>
+                                <td>
+                                    @if($pegawai->validitas=="valid")
+                                        <span class="label bg-green" style="font-size: 12px;">valid</span>
+                                    @else
+                                        <span class="label bg-yellow" style="font-size: 12px;">tidak valid</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="/adm1n/kelola-pegawai/{{$pegawai->id}}" class="btn btn-block btn-primary"><i

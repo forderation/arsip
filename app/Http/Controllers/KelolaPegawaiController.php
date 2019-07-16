@@ -51,7 +51,7 @@ class KelolaPegawaiController extends Controller
         [
             'nama_pegawai.required' => 'Nama pegawai harus dimasukkan',
             'nomor_pegawai.required' => 'Nomor pegawai harus dimasukkan',
-            'email.require' => 'Email pegawai harus dimasukkan'
+            'email.required' => 'Email pegawai harus dimasukkan'
         ]);
         $new = new DataPegawai();
         $new->nama_pegawai = $request->nama_pegawai;
@@ -76,7 +76,7 @@ class KelolaPegawaiController extends Controller
     {
         //
         $pegawai = DataPegawai::where('id','=',$id)->first();
-        $pinjamans = $pegawai->pinjaman_surat();
+        $pinjamans = $pegawai->pinjaman_surat()->get();
         return view('admin.menu.detail-pegawai',compact('pegawai','pinjamans'));
     }
 

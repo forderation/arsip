@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             @include('message')
-            <div class="box box-default box-solid">
+            <div class="box box-primary box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">Menu Kelola Wilayah</h3>
                     <div class="box-tools pull-right">
@@ -24,7 +24,7 @@
                 <div class="box-body" style="">
                     <div class="btn-group">
                         <button type="button" data-toggle="modal" data-target="#modal-tambah-kecamatan"
-                            class="btn btn-block btn-primary"><i class="fa fa-fw fa-th-large"></i> Tambah
+                            class="btn btn-block btn-info" style="color:black;"><i class="fa fa-fw fa-th-large"></i> Tambah
                             Kecamatan</button>
                     </div>
                     <div class="btn-group pull-right">
@@ -38,9 +38,9 @@
             <!-- /.box -->
         </div>
         <div class="col-md-6">
-            <div class="box box-primary box-solid">
+            <div class="box box-info box-solid">
                 <div class="box-header">
-                    <h3 class="box-title">Daftar Kecamatan</h3>
+                    <h3 class="box-title" style="color:black;">Daftar Kecamatan</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -129,7 +129,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="box box-primary">
+                <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Tambah Kecamatan</h3>
                     </div>
@@ -268,8 +268,22 @@
 <script>
     $(document).ready(function () {
         $(function () {
-            $('#example1').DataTable()
-            $('#example2').DataTable()
+            $('#example1').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+            $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
         })
     });
 

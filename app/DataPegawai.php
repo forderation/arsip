@@ -21,6 +21,6 @@ class DataPegawai extends Model
     }
 
     public function pinjaman_surat(){
-        return $this->hasMany('App\Pinjaman');
+        return $this->hasMany('App\Pinjaman','id_peminjam');
     }
 }

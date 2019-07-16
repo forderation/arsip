@@ -53,12 +53,6 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li
-                                class="{{request()->is('dashboard/*') || request()->is('dashboard') ? 'active' : ''}}">
-                                <a href="{{route('pegawai.dashboard')}}">
-                                    <i class="fa fa-dashboard"></i><span> Dashboard</span>
-                                </a>
-                            </li>
-                            <li
                                 class="{{request()->is('surat-ukur/*') || request()->is('surat-ukur') ? 'active' : ''}}">
                                 <a href="{{route('pegawai.surat-ukur')}}">
                                     <i class="fa fa-fw fa-file-text"></i><span> Surat Ukur</span>
@@ -66,14 +60,15 @@
                             </li>
                             <li
                                 class="{{request()->is('pinjaman/*') || request()->is('pinjaman') ? 'active' : ''}}">
-                                <a href="{{route('pegawai.dashboard')}}">
-                                    <i class="fa fa-fw fa-history"></i><span> Pinjaman</span>
+                                <a href="{{route('pegawai.show_pinjaman')}}">
+                                    <i class="fa fa-fw fa-history"></i><span> Riwayat Pinjaman</span>
                                 </a>
                             </li>
                         </ul>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left" role="search" method="GET" action="{{route('pegawai.search-berkas')}}">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" id="navbar-search-input"
+                                <input type="text" class="form-control" id="navbar-search-input" name="surat"
                                     placeholder="Cari berkas nomor surat ukur">
                             </div>
                         </form>
@@ -83,7 +78,7 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- User Account Menu -->
-                            <li class="dropdown user user-menu">
+                            <li class="dropdown user user-menu {{request()->is('profil') ? 'active' : ''}}">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
@@ -95,16 +90,19 @@
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
                                         <img src="{{asset('logo.png')}}" alt="User Image">
-                                        <p>
-                                            NIP: {{\Auth::user()->nomor_pegawai}}
+                                        <p style="font-size: 14px">
+                                            Nomor Induk Pegawai:
+                                        </p>
+                                        <p style="font-size: 14px">
+                                        {{\Auth::user()->nomor_pegawai}}
                                         </p>
                                     </li>
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="{{route('pegawai.show-profil')}}" class="btn btn-primary btn-flat"><i class="fa fa-fw fa-user"></i> Profil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{{route('pegawai.logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="{{route('pegawai.logout')}}" class="btn btn-warning btn-flat"><i class="fa fa-fw fa-eject"></i> Keluar</a>
                                         </div>
                                     </li>
                                 </ul>

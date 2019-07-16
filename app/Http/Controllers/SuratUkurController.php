@@ -94,8 +94,9 @@ class SuratUkurController extends Controller
     public function show($id)
     {
         //
+        $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
         $surat = SuratUkur::where('id',$id)->first();
-        return view('admin.menu.detail-surat-ukur',compact('surat'));
+        return view('admin.menu.detail-surat-ukur',compact('surat','kecamatans'));
     }
 
     /**
@@ -118,7 +119,39 @@ class SuratUkurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nomor_surat_ukur' => 'required',
+            'nomor_hak' => 'required',
+            'nomor_rak' => 'required',
+            'nama_pemilik' => 'required',
+            'id_kecamatan' => 'required',
+            'id_kelurahan' => 'required'
+        ]);
+        $new = SuratUkur::where('id',$id)->first();
+        $new->nomor_surat_ukur =$request->input('nomor_surat_ukur');
+        $new->nomor_hak = $request->input('nomor_hak');
+        $new->nomor_rak = $request->input('nomor_rak');
+        $new->nama_pemilik = $request->input('nama_pemilik');
+        $new->id_kecamatan = $request->input('id_kecamatan');
+        $new->id_kelurahan = $request->input('id_kelurahan');
+        $new->save();
+        if($request->file('gambar_scan')){
+            $request->validate(['gambar_scan'=>'required|mimes:jpeg,bmp,png|max:2048']);
+            try{
+                if($new->path_gambar != NULL){
+                    unlink(public_path()."/".$new->path_gambar);
+                }
+            }catch(Exception $e){
+                return back()->with('warning', $e);
+            }
+            $gambar = $request->file('gambar_scan');
+            $name_gambar = "sku-".$new->id.".".$gambar->getClientOriginalExtension();
+            $path_gambar = "files/gambar/".$name_gambar;
+            $gambar->move((public_path()."/files/gambar/"),$name_gambar);
+            $new->path_gambar = $path_gambar;
+            $new->save();
+        }
+        return back()->with('sukses', 'Sukses mengupdate data berkas surat !');
     }
 
     public function hapus(Request $request)

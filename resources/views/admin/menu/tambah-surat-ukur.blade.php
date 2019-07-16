@@ -81,7 +81,7 @@
                             <select id="kecamatan" name="id_kecamatan" class="form-control" required>
                                 <option value="">--Pilih Kecamatan--</option>
                                 @foreach ($kecamatans as $kecamatan)
-                                <option value="{{$kecamatan->id}}"> {{$kecamatan->nama_kecamatan}}</option>
+                                    <option value="{{$kecamatan->id}}"> {{$kecamatan->nama_kecamatan}}</option>
                                 @endforeach
                             </select>
                         </div>

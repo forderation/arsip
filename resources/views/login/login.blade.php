@@ -46,7 +46,6 @@
                     aria-valuemax="100" style="width: 100%">
                 </div>
             </div>
-            <p class="login-box-msg">Silahkan isi data masuk terlebih dahulu</p>
             @yield('form')
         </div>
         <!-- /.login-box-body -->
