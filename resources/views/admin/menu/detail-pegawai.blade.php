@@ -7,27 +7,22 @@
 @section('content')
 <section class="content">
     <div class="row">
+   
         <div class="col-md-12">
         @include('message')
-            @if ($errors->has('nama_pegawai'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nama_pegawai') }}
-            </div>
-            @endif
-            @if ($errors->has('nomor_pegawai'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nomor_pegawai') }}
-            </div>
-            @endif
-            @if ($errors->has('email'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('email') }}
-            </div>
-            @endif
+        <div class="col-md-6">
             <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" style="height: 200px; width:auto;"
+                        src="{{$pegawai->foto_profil==''? asset('logo.png'):asset($pegawai->foto_profil) }}" alt="User profile picture">
+                    <h3 class="profile-username text-center">{{$pegawai->nama_pegawai}}</h3>
+                    <p class="text-muted text-center">{{$pegawai->nomor_pegawai}}</p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-md-6">
+<div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Detail pegawai {{$pegawai->nama_pegawai}}</h3>
                 </div>
@@ -73,6 +68,8 @@
                     </div>
                 </form>
             </div>
+        </div>
+            
         </div>
         <div class="col-md-12">
             <div class="box box-primary">

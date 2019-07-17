@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Informasi;
 use App\Pinjaman;
 use App\DataPegawai;
+use App\Kecamatan;
 use Auth;
 class PegawaiController extends Controller
 {
@@ -17,13 +18,26 @@ class PegawaiController extends Controller
         $this->middleware('auth:pegawai');
     }
 
+    public function update_foto(Request $request){
+        $request->validate(['foto_profil' => 'required|mimes:jpeg,jpg,bmp,png|max:1024']);
+        $pegawai = DataPegawai::where('id',$request->id)->first();
+        $gambar = $request->file('foto_profil');
+        $name_gambar = "foto-".$request->id.".".$gambar->getClientOriginalExtension();
+        $path_gambar = "files/fp/".$name_gambar;
+        $gambar->move((public_path()."/files/fp/"),$name_gambar);
+        $pegawai->foto_profil = $path_gambar;
+        $pegawai->save();
+        return back()->with('sukses', 'Sukses memperbarui foto profil !');
+        
+    }
+
     public function surat_ukur(){
-        $surats =  SuratUkur::paginate(10);
+        $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
+        $surats =  SuratUkur::paginate(12);
         $total = SuratUkur::all()->count();
         $tersedia = SuratUkur::where('ketersediaan','tersedia')->count();
         $tidak_tersedia = SuratUkur::where('ketersediaan','tidak tersedia')->count();
-        return view('pegawai.menu.surat-ukur',
-        ['surats'=>$surats,'tersedia'=>$tersedia,'tidak_tersedia'=>$tidak_tersedia,'total'=>$total]);
+        return view('pegawai.menu.surat-ukur',compact('surats','total','tersedia','tidak_tersedia','kecamatans'));
     }
 
     public function detail_surat_ukur($id){
@@ -51,12 +65,18 @@ class PegawaiController extends Controller
     }
 
     public function search_berkas(Request $request){
-        $surats =  SuratUkur::where('nomor_surat_ukur','like','%'.$request->surat.'%')->paginate(10);
+        $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
+        if($request->id_kelurahan!=0){
+            $surats =  SuratUkur::where('id_kecamatan',$request->id_kecamatan)
+            ->where('id_kelurahan',$request->id_kelurahan)->where('nomor_surat_ukur','like','%'.$request->surat.'%')->paginate(12);
+        }else{
+            $surats =  SuratUkur::where('id_kecamatan',$request->id_kecamatan)
+                ->where('nomor_surat_ukur','like','%'.$request->surat.'%')->paginate(12);
+        }
         $total = $surats->count();
         $tersedia = $surats->where('ketersediaan','tersedia')->count();
         $tidak_tersedia = $surats->where('ketersediaan','tidak tersedia')->count();
-        return view('pegawai.menu.surat-ukur',
-        ['surats'=>$surats,'tersedia'=>$tersedia,'tidak_tersedia'=>$tidak_tersedia,'total'=>$total]);
+        return view('pegawai.menu.surat-ukur',compact('surats','total','tersedia','tidak_tersedia','kecamatans'));
     }
 
     public function show_profil(){

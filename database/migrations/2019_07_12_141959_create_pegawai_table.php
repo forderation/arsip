@@ -18,6 +18,7 @@ class CreatePegawaiTable extends Migration
             $table->bigInteger('nomor_pegawai')->unique()->nullable();
             $table->string('nama_pegawai');
             $table->string('password')->nullable();
+            $table->string('foto_profil')->default("");
             $table->string('jenis_kelamin');
             $table->enum('validitas', ['valid','tidak valid'])->default('tidak valid');
             $table->string('email')->unique()->nullable();

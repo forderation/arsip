@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Update scan berkas</label>
                                 <input type="file" id="imgInp" name="gambar_scan">
-                                <p class="help-block">format: (.jpeg, .png, .bmp) maksimal 2Mb</p>
+                                <p class="help-block">format: (.jpeg .jpg .png, .bmp) maksimal 2Mb</p>
                             </div>
                             <div class="form-group">
                                 <label>Preview gambar: </label>
@@ -144,7 +144,7 @@
                     success: function (res) {
                         if (res) {
                             $("#kelurahan").empty();
-                            $("#kelurahan").append('<option>Select</option>');
+                            $("#kelurahan").append('<option value="">Select</option>');
                             $.each(res, function (key, value) {
                                 $("#kelurahan").append('<option value="' + key +
                                     '">' + value + '</option>');

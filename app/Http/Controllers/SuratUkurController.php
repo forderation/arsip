@@ -39,14 +39,6 @@ class SuratUkurController extends Controller
         return view('admin.menu.tambah-surat-ukur',compact('kecamatans'));
     }
 
-    public function get_kelurahan(Request $request)
-    {
-        $kelurahans = Kelurahan::where('id_kecamatan', $request->id_kecamatan)
-            ->OrderBy('nama_kelurahan', 'ASC')
-            ->pluck('nama_kelurahan', 'id');
-        return response()->json($kelurahans);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -82,7 +74,7 @@ class SuratUkurController extends Controller
             'nama_pemilik' => 'required',
             'id_kecamatan' => 'required',
             'id_kelurahan' => 'required',
-            'gambar_scan' => 'required|mimes:jpeg,bmp,png|max:2048',
+            'gambar_scan' => 'required|mimes:jpeg,jpg,bmp,png|max:2048',
         ]);
     }
     /**
@@ -136,7 +128,7 @@ class SuratUkurController extends Controller
         $new->id_kelurahan = $request->input('id_kelurahan');
         $new->save();
         if($request->file('gambar_scan')){
-            $request->validate(['gambar_scan'=>'required|mimes:jpeg,bmp,png|max:2048']);
+            $request->validate(['gambar_scan'=>'required|mimes:jpeg,jpg,bmp,png|max:2048']);
             try{
                 if($new->path_gambar != NULL){
                     unlink(public_path()."/".$new->path_gambar);

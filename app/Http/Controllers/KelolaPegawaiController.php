@@ -63,7 +63,7 @@ class KelolaPegawaiController extends Controller
         $password = substr(md5($new->nama_pegawai),0,7);
         $new->password = bcrypt($password);
         $new->save();
-        return back()->with('sukses', 'Sukses menambah data pegawai password default: '.$new->password);
+        return back()->with('sukses', 'Sukses menambah data pegawai password default: '.$password);
     }
 
     /**

@@ -4,6 +4,15 @@
     <div class="row">
         <div class="col-xs-12">
             @include('message')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">Informasi profil admin</h3>

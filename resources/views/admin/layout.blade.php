@@ -175,11 +175,15 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
+            <div class="container">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2019 Developed by <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=kharisma.muzaki@gmail.com">Kharisma Muzaki G.</a>. Template by <a href="https://adminlte.io">Admin LTE</a>.</strong> All
+                rights
+                reserved.
             </div>
-            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-            reserved.
+            <!-- /.container -->
         </footer>
 
     </div>

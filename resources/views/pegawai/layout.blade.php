@@ -43,7 +43,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="/" class="navbar-brand"><b>Arsip</b> Pertanahan Kota Kupang</a>
+                        <a href="/" class="navbar-brand"><img style="width:30px; margin-right:5px; display:inline;" class="img-responsive img-circle" src="{{asset('logo.png')}}" alt="User profile picture"> <b>Arsip</b> Pertanahan Kota Kupang</a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
@@ -65,13 +65,6 @@
                                 </a>
                             </li>
                         </ul>
-                        <form class="navbar-form navbar-left" role="search" method="GET" action="{{route('pegawai.search-berkas')}}">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="navbar-search-input" name="surat"
-                                    placeholder="Cari berkas nomor surat ukur">
-                            </div>
-                        </form>
                     </div>
                     <!-- /.navbar-collapse -->
                     <!-- Navbar Right Menu -->
@@ -82,14 +75,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="{{asset('logo.png')}}" class="user-image" alt="User Image">
+                                    <img src="{{\Auth::user()->foto_profil==''? asset('logo.png'):asset(\Auth::user()->foto_profil) }}" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{{\Auth::user()->nama_pegawai}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="{{asset('logo.png')}}" alt="User Image">
+                                        <img src="{{\Auth::user()->foto_profil==''? asset('logo.png'):asset(\Auth::user()->foto_profil) }}" alt="User Image">
                                         <p style="font-size: 14px">
                                             Nomor Induk Pegawai:
                                         </p>
@@ -155,9 +148,9 @@
         <footer class="main-footer">
             <div class="container">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
+                    <b>Version</b> 1.0
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All
+                <strong>Copyright &copy; 2019 Developed by <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=kharisma.muzaki@gmail.com">Kharisma Muzaki G.</a>. Template by <a href="https://adminlte.io">Admin LTE</a>.</strong> All
                 rights
                 reserved.
             </div>

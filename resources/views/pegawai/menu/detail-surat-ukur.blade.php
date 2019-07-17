@@ -57,7 +57,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Hasil scan: </label>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-info"><i class="fa fa-fw fa-search-plus"></i>
+                                <button style="margin: 10px;" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-info"><i class="fa fa-fw fa-search-plus"></i>
                                     Klik disini untuk perbesar
                                 </button>
                                 <img class="img-responsive" style="width: 60%;" src="{{asset($surat->path_gambar)}}" id="blah" alt="Photo">

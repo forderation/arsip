@@ -9,47 +9,14 @@
     <div class="row">
         <div class="col-md-12">
             @include('message')
-            @if ($errors->has('nomor_surat_ukur'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nomor_surat_ukur') }}
-            </div>
-            @endif
-            @if ($errors->has('nomor_hak'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nomor_hak') }}
-            </div>
-            @endif
-            @if ($errors->has('nomor_rak'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nomor_rak') }}
-            </div>
-            @endif
-            @if ($errors->has('nama_pemilik'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nama_pemilik') }}
-            </div>
-            @endif
-            @if ($errors->has('id_kecamatan'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('id_kecamatan') }}
-            </div>
-            @endif
-            @if ($errors->has('id_kelurahan'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('id_kelurahan') }}
-            </div>
-            @endif
-            @if ($errors->has('gambar_scan'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('gambar_scan') }}
-            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -94,7 +61,7 @@
                         <div class="form-group">
                             <label for="exampleInputFile">Hasil scan berkas</label>
                             <input type="file" id="imgInp" name="gambar_scan">
-                            <p class="help-block">format: (.jpeg, .png, .bmp) maksimal 2Mb</p>
+                            <p class="help-block">format: (.jpeg .jpg .png, .bmp) maksimal 2Mb</p>
                         </div>
                         <div class="form-group">
                             <label>Preview gambar: </label>
@@ -125,7 +92,7 @@
                     success: function(res) {
                         if (res) {
                             $("#kelurahan").empty();
-                            $("#kelurahan").append('<option>Select</option>');
+                            $("#kelurahan").append('<option value="">Select</option>');
                             $.each(res, function(key, value) {
                                 $("#kelurahan").append('<option value="' + key + '">' + value + '</option>');
                             });

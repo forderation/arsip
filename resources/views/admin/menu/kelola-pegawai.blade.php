@@ -10,23 +10,14 @@
     <div class="row">
         <div class="col-md-12">
             @include('message')
-            @if ($errors->has('nama_pegawai'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nama_pegawai') }}
-            </div>
-            @endif
-            @if ($errors->has('nomor_pegawai'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('nomor_pegawai') }}
-            </div>
-            @endif
-            @if ($errors->has('email'))
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ $errors->first('email') }}
-            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
