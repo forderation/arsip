@@ -33,18 +33,18 @@ Route::prefix('adm1n')->group(function () {
   Route::post('/kelola-pegawai/update', 'KelolaPegawaiController@update')->name('admin.update-pegawai');
   Route::post('/kelola-pegawai/reset-password', 'KelolaPegawaiController@reset_password')->name('admin.reset-password-pegawai');
 
-  Route::get('/surat-ukur', 'SuratUkurController@index')->name('admin.surat-ukur');
+  Route::get('/surat-ukur', 'SuratController@index')->name('admin.surat-ukur');
   Route::get('/surat-ukur/daftar-kelurahan', function (Request $request) {
     $kelurahans = Kelurahan::where('id_kecamatan', $request->id_kecamatan)
       ->OrderBy('nama_kelurahan', 'ASC')
       ->pluck('nama_kelurahan', 'id');
     return response()->json($kelurahans);
   })->name('get-kelurahan');
-  Route::get('/surat-ukur/tambah-surat', 'SuratUkurController@create')->name('admin.tambah-surat-ukur');
-  Route::post('/surat-ukur/tambah-surat', 'SuratUkurController@store')->name('admin.tambah-surat-ukur');
-  Route::post('/surat-ukur/hapus', 'SuratUkurController@hapus')->name('admin.hapus-surat');
-  Route::post('/surat-ukur/update/{id}', 'SuratUkurController@update');
-  Route::get('/surat-ukur/{id}', 'SuratUkurController@show');
+  Route::get('/surat-ukur/tambah-surat', 'SuratController@create')->name('admin.tambah-surat-ukur');
+  Route::post('/surat-ukur/tambah-surat', 'SuratController@store')->name('admin.tambah-surat-ukur');
+  Route::post('/surat-ukur/hapus', 'SuratController@hapus')->name('admin.hapus-surat');
+  Route::post('/surat-ukur/update/{id}', 'SuratController@update');
+  Route::get('/surat-ukur/{id}', 'SuratController@show');
 
   Route::get('/wilayah', 'WilayahController@index')->name('admin.wilayah');
   Route::post('/wilayah/hapus-kecamatan', 'WilayahController@delete_kecamatan')->name('admin.hapus-kecamatan');

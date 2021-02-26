@@ -20,7 +20,7 @@
             @endif
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Detail surat ukur nomor: {{$surat->nomor_surat_ukur}}</h3>
+                    <h3 class="box-title">Detail surat ukur nomor: {{$surat->nomor_surat}}</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                 class="fa fa-minus"></i>
@@ -36,12 +36,8 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor surat ukur: </label>
-                                <input type="text" class="form-control" name="nomor_surat_ukur"
-                                    value="{{$surat->nomor_surat_ukur}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor hak: </label>
-                                <input type="text" class="form-control" name="nomor_hak" value="{{$surat->nomor_hak}}">
+                                <input type="text" class="form-control" name="nomor_surat"
+                                    value="{{$surat->nomor_surat}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor rak: </label>

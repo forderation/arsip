@@ -7,69 +7,65 @@
 @section('content')
 <section class="content">
     <div class="row">
-   
+
         <div class="col-md-12">
-        @include('message')
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" style="height: 200px; width:auto;"
-                        src="{{$pegawai->foto_profil==''? asset('logo.png'):asset($pegawai->foto_profil) }}" alt="User profile picture">
-                    <h3 class="profile-username text-center">{{$pegawai->nama_pegawai}}</h3>
-                    <p class="text-muted text-center">{{$pegawai->nomor_pegawai}}</p>
+            @include('message')
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" style="height: 200px; width:auto;" src="{{$pegawai->foto_profil==''? asset('logo.png'):asset($pegawai->foto_profil) }}" alt="User profile picture">
+                        <h3 class="profile-username text-center">{{$pegawai->nama_pegawai}}</h3>
+                        <p class="text-muted text-center">{{$pegawai->nomor_pegawai}}</p>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
             </div>
-        </div>
-        <div class="col-md-6">
-<div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Detail pegawai {{$pegawai->nama_pegawai}}</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form"  method="POST" action="{{route('admin.update-pegawai')}}">
-                    @csrf
-                    <div class="box-body">
-                    <div class="form-group">
-                            <input type="hidden" name="id" value="{{$pegawai->id}}"/>
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detail pegawai {{$pegawai->nama_pegawai}}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{{route('admin.update-pegawai')}}">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <input type="hidden" name="id" value="{{$pegawai->id}}" />
                                 <label for="exampleInputEmail1">Alamat Email: </label>
-                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email" value="{{$pegawai->email}}"
-                                    required>
+                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email" value="{{$pegawai->email}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor Induk Pegawai: </label>
-                                <input type="number" min="0" class="form-control" name="nomor_pegawai" value="{{$pegawai->nomor_pegawai}}"
-                                    placeholder="Masukkan NIP" required>
+                                <input type="number" min="0" class="form-control" name="nomor_pegawai" value="{{$pegawai->nomor_pegawai}}" placeholder="Masukkan NIP" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Pegawai: </label>
-                                <input type="text" min="0" value="{{$pegawai->nama_pegawai}}" class="form-control" name="nama_pegawai"
-                                    placeholder="Masukkan Nama Lengkap" required>
+                                <input type="text" min="0" value="{{$pegawai->nama_pegawai}}" class="form-control" name="nama_pegawai" placeholder="Masukkan Nama Lengkap" required>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin: </label>
                                 <select name="jenis_kelamin" class="form-control" required>
                                     @if($pegawai->jenis_kelamin=="laki-laki")
-                                        <option value="laki-laki" selected>Laki-laki</option>
-                                        <option value="wanita">Wanita</option>
+                                    <option value="laki-laki" selected>Laki-laki</option>
+                                    <option value="wanita">Wanita</option>
                                     @else
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="wanita" selected>Wanita</option>
+                                    <option value="laki-laki">Laki-laki</option>
+                                    <option value="wanita" selected>Wanita</option>
                                     @endif
                                 </select>
                             </div>
-                    </div>
-                    <!-- /.box-body -->
+                        </div>
+                        <!-- /.box-body -->
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary pull-right">Rubah data</button>
-                        <button class="btn btn-warning pull-left" type="button" onclick="hapusPegawai('{{$pegawai->id}}','{{$pegawai->nama_pegawai}}')">Reset password</button>
-                    </div>
-                </form>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary pull-right">Rubah data</button>
+                            <button class="btn btn-warning pull-left" type="button" onclick="hapusPegawai('{{$pegawai->id}}','{{$pegawai->nama_pegawai}}')">Reset password</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-            
+
         </div>
         <div class="col-md-12">
             <div class="box box-primary">
@@ -92,7 +88,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1?>
+                            <?php $no = 1 ?>
                             @foreach ($pinjamans as $pinjaman)
                             <tr>
                                 <td>{{$no}}</td>
@@ -102,7 +98,7 @@
                                 <td>{{$pinjaman->tanggal_pinjam}}</td>
                                 <td>{{$pinjaman->tanggal_kembali}}</td>
                                 <td>{{$pinjaman->status_dipinjam}}</td>
-                                <?php $no++?>
+                                <?php $no++ ?>
                             </tr>
                             @endforeach
                         </tbody>
@@ -130,8 +126,7 @@
                             <input type="hidden" id="id_pegawai" name="id" value="" />
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Apakah anda yakin ingin mereset password: </label>
-                                <input type="text" class="form-control" name="nama_pegawai" id="nama_pegawai"
-                                    value="" disabled>
+                                <input type="text" class="form-control" name="nama_pegawai" id="nama_pegawai" value="" disabled>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -151,8 +146,8 @@
 <script src="{{asset('lte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
-    $(document).ready(function () {
-        $(function () {
+    $(document).ready(function() {
+        $(function() {
             $('#example1').DataTable()
         })
     });

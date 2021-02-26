@@ -18,6 +18,6 @@ class Kelurahan extends Model
     }
 
     public function surat_ukur(){
-        return $this->hasMany('App\SuratUkur');
+        return $this->hasMany('App\BerkasSurat');
     }
 }

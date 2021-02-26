@@ -19,7 +19,7 @@
                 <div class="box box-warning box-solid">
                     @endif
                     <div class="box-header with-border">
-                        <h3 class="box-title">Detail surat ukur nomor: {{$surat->nomor_surat_ukur}}</h3>
+                        <h3 class="box-title">Detail surat ukur nomor: {{$surat->nomor_surat}}</h3>
                         <div class="box-tools pull-right">
                             <a href="/surat-ukur" class="btn btn-box-tool"><i class="fa fa-fw fa-eject"></i>
                             </a>
@@ -30,12 +30,8 @@
                     <div class="box-body">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor surat ukur: </label>
-                                <input type="text" class="form-control" name="nomor_surat_ukur" value="{{$surat->nomor_surat_ukur}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor hak: </label>
-                                <input type="text" class="form-control" name="nomor_hak" value="{{$surat->nomor_hak}}" disabled>
+                                <label for="exampleInputEmail1">Nomor surat: </label>
+                                <input type="text" class="form-control" name="nomor_surat" value="{{$surat->nomor_surat}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor rak: </label>
@@ -65,7 +61,7 @@
                         </div>
                         <div class="col-md-12">
                             @if($surat->ketersediaan=="tersedia")
-                            <a href="#" class="pull-right btn-lg btn btn-success" data-toggle="modal" data-target="#modal-pinjam-surat"><i class="fa fa-fw fa-save"></i> Pinjam surat ukur</a>
+                            <a href="#" class="pull-right btn-lg btn btn-success" data-toggle="modal" data-target="#modal-pinjam-surat"><i class="fa fa-fw fa-save"></i> Pinjam Berkas Surat</a>
                             @else
                             <a href="#" class="pull-right btn-lg btn btn-success" disabled><i class="fa fa-fw fa-save"></i> Surat tidak tersedia</a>
                             @endif
@@ -117,8 +113,8 @@
                         <input type="hidden" name="id" value="{{$surat->id}}"/>
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor surat ukur: </label>
-                                <input type="text" class="form-control" value="{{$surat->nomor_surat_ukur}}" disabled>
+                                <label for="exampleInputEmail1">Nomor surat: </label>
+                                <input type="text" class="form-control" value="{{$surat->nomor_surat}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama pemilik: </label>

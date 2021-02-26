@@ -20,7 +20,7 @@
             @endif
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tambah berkas surat ukur</h3>
+                    <h3 class="box-title">Tambah Berkas</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -29,11 +29,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nomor surat ukur: </label>
-                            <input type="text" class="form-control" name="nomor_surat_ukur" placeholder="Masukkan nomor surat ukur" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nomor hak: </label>
-                            <input type="text" class="form-control" name="nomor_hak" placeholder="Masukkan nomor hak" required>
+                            <input type="text" class="form-control" name="nomor_surat" placeholder="Masukkan nomor surat ukur" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nomor rak: </label>

@@ -43,7 +43,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nomor Surat Ukur</th>
+                                <th>Nomor Surat</th>
                                 <th>Peminjam</th>
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
@@ -56,7 +56,7 @@
                             @foreach ($pinjamans as $pinjaman)
                             <tr>
                                 <td>{{$no}}</td>
-                                <td><a href="surat-ukur/{{$pinjaman->surat_ukur->id}}">{{$pinjaman->surat_ukur->nomor_surat_ukur}}</a></td>
+                                <td><a href="surat-ukur/{{$pinjaman->surat_ukur->id}}">{{$pinjaman->surat_ukur->nomor_surat}}</a></td>
                                 <td><a href="kelola-pegawai/{{$pinjaman->peminjam->id}}">{{$pinjaman->peminjam->nama_pegawai}}</a></td>
                                 <td>{{$pinjaman->tanggal_pinjam}}</td>
                                 <td>

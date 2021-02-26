@@ -22,7 +22,7 @@ class CreatePinjamanSuratTable extends Migration
             $table->dateTime('batas_akhir_kembali')->nullable();
             $table->enum('status_dipinjam', ['masih dipinjam', 'pinjaman selesai', 'menunggu persetujuan','pengajuan dibatalkan'])->default('menunggu persetujuan');
             $table->timestamps();
-            $table->foreign('id_surat_ukur')->references('id')->on('surat_ukur')
+            $table->foreign('id_surat_ukur')->references('id')->on('berkas_surat')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_peminjam')->references('id')->on('pegawai')
                 ->onDelete('cascade')->onUpdate('cascade');

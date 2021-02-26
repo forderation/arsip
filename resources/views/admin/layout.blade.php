@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Arsip Pertanahan Kota Kupang | Dashboard</title>
+    <title>Sistem Pengarsipan Berkas | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -59,13 +59,13 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu {{request()->is('adm1n/profil') ? 'active' : ''}}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{asset('logo.png')}}" class="user-image" alt="User Image">
+                                <img src="https://i.pinimg.com/originals/f4/78/98/f478985436994fe759d9c265fc591608.jpg" class="user-image" alt="User Image">
                                 <span class="hidden-xs">{{\Auth::user()->get_nama()}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="{{asset('logo.png')}}" class="img-circle" alt="User Image">
+                                    <img src="https://i.pinimg.com/originals/f4/78/98/f478985436994fe759d9c265fc591608.jpg" class="img-circle" alt="User Image">
                                     <p>
                                         <small>Nomor Pegawai:
                                             <br> {{\Auth::user()->nomor_pegawai}}</small>
@@ -142,7 +142,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Arsip Pertanahan Kota Kupang
+                    Sistem Pengarsipan Berkas
                     <small>Version 1.0</small>
                 </h1>
                 <ol class="breadcrumb">

@@ -12,7 +12,7 @@
             @include('message')
             <div class="box box-primary box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Menu Kelola Berkas Surat Ukur</h3>
+                    <h3 class="box-title">Menu Kelola Berkas Surat</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                 class="fa fa-minus"></i>
@@ -23,7 +23,9 @@
                 <!-- /.box-header -->
                 <div class="box-body" style="">
                     <div class="btn-group">
-                        <a href="{{route('admin.tambah-surat-ukur')}}"  class="btn btn-block btn-primary"><i class="fa fa-fw fa-plus-square-o"></i> Tambah Data Surat Ukur</a>
+                        <a href="{{route('admin.tambah-surat-ukur')}}"  class="btn btn-block btn-primary">
+                            <i class="fa fa-fw fa-plus-square-o"></i> Tambah Data Berkas Surat
+                        </a>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -42,8 +44,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nomor Rak</th>
-                                <th>Nomor Surat Ukur</th>
-                                <th>Nomor Hak</th>
+                                <th>Nomor Surat</th>
                                 <th>Nama Pemilik</th>
                                 <th>Kelurahan</th>
                                 <th>Kecamatan</th>
@@ -56,8 +57,7 @@
                             <tr>
                                 <td>{{$no}}</td>
                                 <td>{{$surat->nomor_rak}}</td>
-                                <td>{{$surat->nomor_surat_ukur}}</td>
-                                <td>{{$surat->nomor_hak}}</td>
+                                <td>{{$surat->nomor_surat}}</td>
                                 <td>{{$surat->nama_pemilik}}</td>
                                 <td>{{$surat->kelurahan->nama_kelurahan}}</td>
                                 <td>{{$surat->kecamatan->nama_kecamatan}}</td>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="btn-group">
                                         <button
-                                            onclick="hapusSurat('{{$surat->id}}','{{$surat->nomor_surat_ukur}}','{{$surat->nama_pemilik}}')"
+                                            onclick="hapusSurat('{{$surat->id}}','{{$surat->nomor_surat}}','{{$surat->nama_pemilik}}')"
                                             type="button" class="btn btn-block btn-danger"><i
                                                 class="fa fa-fw fa-trash-o"></i>Hapus</button>
                                     </div>
@@ -104,7 +104,7 @@
                             <input type="hidden" id="id_surat" name="id" value="" />
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor Surat: </label>
-                                <input type="text" class="form-control" id="sku" name="nomor_surat_ukur" value=""
+                                <input type="text" class="form-control" id="sku" name="nomor_surat" value=""
                                     disabled>
                             </div>
                             <div class="form-group">

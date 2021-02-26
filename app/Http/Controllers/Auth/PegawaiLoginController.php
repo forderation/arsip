@@ -49,7 +49,6 @@ class PegawaiLoginController extends Controller
     {
 
         if (Auth::guard('pegawai')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            // if successful, then redirect to their intended location
             if(DataPegawai::where('email',$request->email)->first()->validitas == "tidak valid"){
                 Auth::guard('pegawai')->logout();
                 return back()->withErrors(['email' => 'Akun anda terdaftar namun belum diverifikasi oleh admin.']);

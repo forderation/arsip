@@ -8,7 +8,7 @@
 <div class="col-md-10">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Pencarian berkas surat ukur</h3>
+            <h3 class="box-title">Pencarian berkas surat</h3>
             <br>
             <br>
             <div class="col-md-12">
@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label>Nomor surat ukur: </label>
+                    <label>Nomor surat: </label>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Masukkan nomor surat ukur" name="surat">
                         <span class="input-group-btn">

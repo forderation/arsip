@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Arsip Pertanahan Kota Kupang | Dashboard</title>
+    <title>Sistem Pengarsipan Berkas | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -43,7 +43,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="/" class="navbar-brand"><img style="width:30px; margin-right:5px; display:inline;" class="img-responsive img-circle" src="{{asset('logo.png')}}" alt="User profile picture"> <b>Arsip</b> Pertanahan Kota Kupang</a>
+                        <a href="/" class="navbar-brand"><img style="width:30px; margin-right:5px; display:inline;" class="img-responsive img-circle" src="{{asset('logo.png')}}" alt="User profile picture"> Sistem <b>Arsip</b> Berkas</a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>

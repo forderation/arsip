@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SuratUkur;
+use App\BerkasSurat;
 use Carbon\Carbon;
 use App\Informasi;
 use App\Pinjaman;
@@ -33,15 +33,15 @@ class PegawaiController extends Controller
 
     public function surat_ukur(){
         $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
-        $surats =  SuratUkur::paginate(12);
-        $total = SuratUkur::all()->count();
-        $tersedia = SuratUkur::where('ketersediaan','tersedia')->count();
-        $tidak_tersedia = SuratUkur::where('ketersediaan','tidak tersedia')->count();
+        $surats =  BerkasSurat::paginate(12);
+        $total = BerkasSurat::all()->count();
+        $tersedia = BerkasSurat::where('ketersediaan','tersedia')->count();
+        $tidak_tersedia = BerkasSurat::where('ketersediaan','tidak tersedia')->count();
         return view('pegawai.menu.surat-ukur',compact('surats','total','tersedia','tidak_tersedia','kecamatans'));
     }
 
     public function detail_surat_ukur($id){
-        $surat = SuratUkur::where('id',$id)->first();
+        $surat = BerkasSurat::where('id',$id)->first();
         $batas_durasi = Informasi::where('id',1)->first()->batas_akhir_kembali;
         $batas_durasi = Carbon::now()->addDay($batas_durasi);
         return view('pegawai.menu.detail-surat-ukur',compact('surat','batas_durasi'));
@@ -67,10 +67,10 @@ class PegawaiController extends Controller
     public function search_berkas(Request $request){
         $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
         if($request->id_kelurahan!=0){
-            $surats =  SuratUkur::where('id_kecamatan',$request->id_kecamatan)
+            $surats =  BerkasSurat::where('id_kecamatan',$request->id_kecamatan)
             ->where('id_kelurahan',$request->id_kelurahan)->where('nomor_surat_ukur','like','%'.$request->surat.'%')->paginate(12);
         }else{
-            $surats =  SuratUkur::where('id_kecamatan',$request->id_kecamatan)
+            $surats =  BerkasSurat::where('id_kecamatan',$request->id_kecamatan)
                 ->where('nomor_surat_ukur','like','%'.$request->surat.'%')->paginate(12);
         }
         $total = $surats->count();

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
-use App\SuratUkur;
+use App\BerkasSurat;
 use Illuminate\Http\Request;
 use App\Kecamatan;
-use App\Kelurahan;
 
-class SuratUkurController extends Controller
+class SuratController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +22,7 @@ class SuratUkurController extends Controller
     public function index()
     {
         //
-        $surats = SuratUkur::all();
+        $surats = BerkasSurat::all();
         return view('admin.menu.surat-ukur', compact('surats'));
     }
 
@@ -49,9 +48,8 @@ class SuratUkurController extends Controller
     {
         //
         $this->validator($request->all())->validate();
-        $new = new SuratUkur();
-        $new->nomor_surat_ukur =$request->input('nomor_surat_ukur');
-        $new->nomor_hak = $request->input('nomor_hak');
+        $new = new BerkasSurat();
+        $new->nomor_surat =$request->input('nomor_surat');
         $new->nomor_rak = $request->input('nomor_rak');
         $new->nama_pemilik = $request->input('nama_pemilik');
         $new->id_kecamatan = $request->input('id_kecamatan');
@@ -68,8 +66,7 @@ class SuratUkurController extends Controller
     
     public function validator(array $data){
         return Validator::make($data, [
-            'nomor_surat_ukur' => 'required',
-            'nomor_hak' => 'required',
+            'nomor_surat' => 'required',
             'nomor_rak' => 'required',
             'nama_pemilik' => 'required',
             'id_kecamatan' => 'required',
@@ -87,7 +84,7 @@ class SuratUkurController extends Controller
     {
         //
         $kecamatans = Kecamatan::OrderBy('nama_kecamatan','ASC')->get();
-        $surat = SuratUkur::where('id',$id)->first();
+        $surat = BerkasSurat::where('id',$id)->first();
         return view('admin.menu.detail-surat-ukur',compact('surat','kecamatans'));
     }
 
@@ -112,16 +109,14 @@ class SuratUkurController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nomor_surat_ukur' => 'required',
-            'nomor_hak' => 'required',
+            'nomor_surat' => 'required',
             'nomor_rak' => 'required',
             'nama_pemilik' => 'required',
             'id_kecamatan' => 'required',
             'id_kelurahan' => 'required'
         ]);
-        $new = SuratUkur::where('id',$id)->first();
-        $new->nomor_surat_ukur =$request->input('nomor_surat_ukur');
-        $new->nomor_hak = $request->input('nomor_hak');
+        $new = BerkasSurat::where('id',$id)->first();
+        $new->nomor_surat =$request->input('nomor_surat');
         $new->nomor_rak = $request->input('nomor_rak');
         $new->nama_pemilik = $request->input('nama_pemilik');
         $new->id_kecamatan = $request->input('id_kecamatan');
@@ -149,7 +144,7 @@ class SuratUkurController extends Controller
     public function hapus(Request $request)
     {
         //
-        $destroy = SuratUkur::findOrFail($request->id);
+        $destroy = BerkasSurat::findOrFail($request->id);
         try{
           if($destroy->path_gambar != NULL){
               unlink(public_path()."/".$destroy->path_gambar);

@@ -18,6 +18,6 @@ class Pinjaman extends Model
     }
 
     public function surat_ukur(){
-        return $this->belongsTo('App\SuratUkur', 'id_surat_ukur');
+        return $this->belongsTo('App\BerkasSurat', 'id_surat_ukur');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\DataPegawai;
 use App\Pinjaman;
-use App\SuratUkur;
+use App\BerkasSurat;
 use App\Kelurahan;
 use App\Admin;
 use Auth;
@@ -22,7 +22,7 @@ class AdminController extends Controller
         $pegawais = DataPegawai::where('validitas','tidak valid')->get();
         $total_pegawai = DataPegawai::where('validitas','valid')->count();
         $pinjaman = Pinjaman::all()->count();
-        $surat_ukur = SuratUkur::all()->count();
+        $surat_ukur = BerkasSurat::all()->count();
         $kelurahan = Kelurahan::all()->count();
         return view('admin.menu.index',compact('pegawais','total_pegawai','pinjaman','surat_ukur','kelurahan'));
     }

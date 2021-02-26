@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Riwayat pinjaman surat ukur</h3>
+                    <h3 class="box-title">Riwayat pinjaman surat</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -23,8 +23,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nomor surat ukur</th>
-                                <th>Nomor hak</th>
+                                <th>Nomor surat</th>
                                 <th>Nama Pemilik</th>
                                 <th>Tanggal pinjam</th>
                                 <th>Tanggal kembali</th>
@@ -36,8 +35,7 @@
                             @foreach ($pinjamans as $pinjaman)
                             <tr>
                                 <td>{{$no}}</td>
-                                <td>{{$pinjaman->surat_ukur->nomor_surat_ukur}}</td>
-                                <td>{{$pinjaman->surat_ukur->nomor_hak}}</td>
+                                <td>{{$pinjaman->surat_ukur->nomor_surat}}</td>
                                 <td>{{$pinjaman->surat_ukur->nama_pemilik}}</td>
                                 <td>{{$pinjaman->tanggal_pinjam}}</td>
                                 <td>
